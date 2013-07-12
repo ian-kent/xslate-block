@@ -1,0 +1,29 @@
+Inline block with render
+: $c.block(-> {
+    : count()
+: }).render
+
+
+Capture a block
+: my $block = $c.block(-> {
+    : count()
+: })
+
+Render it later
+<: $block.render :>
+<: $block.render :>
+<: $block.render :>
+
+Inline block with args
+: $c.block({ foo => 'bar' }, -> {
+    : count()
+: }).render
+
+
+Capture a block with args
+: my $block2 = $c.block({ foo => 'baz' }, -> {
+    : count()
+: })
+
+And render it later
+<: $block2.render :>

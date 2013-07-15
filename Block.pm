@@ -1,6 +1,5 @@
 package Block;
 
-use Modern::Perl;
 use Moose;
 
 has 'args'  => ( is => 'rw', isa => 'HashRef', required => 1 );

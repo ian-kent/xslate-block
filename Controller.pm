@@ -1,6 +1,5 @@
 package Controller;
 
-use Modern::Perl;
 use Moose;
 
 use Block;

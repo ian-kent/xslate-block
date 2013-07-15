@@ -29,6 +29,10 @@ print $xslate->render('test.tx', {
 #    }
 #);
 
+# Uncomment this bit to get even more weirdness
+# Causes error: Text::Xslate: Functions must be a CODE reference, not '****'
+#$xslate->{function}->{count} = sub { ++$count; };
+
 # Render the template again - it always fails if we reuse the original xslate object
 print $xslate->render('test.tx', {
     c => Controller->new

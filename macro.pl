@@ -41,9 +41,5 @@ EOF
 print $xslate->render_string($content);
 print $xslate->render_string($content);
 
-open my $fh, '>', 'test2.tx';
-print $fh $content;
-close $fh;
-
 print $xslate->render('test2.tx');
 print $xslate->render('test2.tx');

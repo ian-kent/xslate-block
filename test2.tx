@@ -1,0 +1,3 @@
+: foo(-> {
+Rendering <: count() :>
+: }).render

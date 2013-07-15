@@ -21,7 +21,7 @@ print $xslate->render('test.tx', {
 });
 
 # Uncomment this bit and the render call below works again
-#my $xslate = Text::Xslate->new(
+#$xslate = Text::Xslate->new(
 #    function => {
 #        count => sub {
 #            ++$count;

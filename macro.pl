@@ -11,6 +11,21 @@ sub render {
     return shift->{block}->();
 }
 
+package helper;
+
+sub new {
+    my ($package, %args) = @_;
+    return bless {
+        %args
+    }, 'helper';
+}
+
+sub test {
+    my ($self) = @_;
+    my $block = pop @_;
+    return test->new(block => $block);
+}
+
 package main;
 
 #!/usr/bin/env perl
@@ -21,10 +36,6 @@ use Text::Xslate;
 my $count = 0;
 my $xslate = Text::Xslate->new(
     function => {
-        foo => sub {
-            my $block = pop;
-            return test->new(block => $block);
-        },
         count => sub {
             ++$count;
         }
@@ -32,14 +43,18 @@ my $xslate = Text::Xslate->new(
 );
 
 my $content = <<EOF
-: foo(-> {
+: \$c.test(-> {
 Rendering <: count() :>
 : }).render
 EOF
 ;
 
-print $xslate->render_string($content);
-print $xslate->render_string($content);
+my $params = {
+    c => helper->new
+};
 
-print $xslate->render('test2.tx');
-print $xslate->render('test2.tx');
+print $xslate->render_string($content, $params);
+print $xslate->render_string($content, $params);
+
+print $xslate->render('test2.tx', $params);
+print $xslate->render('test2.tx', $params);

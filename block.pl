@@ -1,13 +1,12 @@
 #!/usr/bin/env perl
 
 use Data::Dumper;
-#use Modern::Perl;
 use Text::Xslate;
 use Controller;
 
 my $count = 0;
 
-# This one always works
+# Instantiate xslate with a function
 my $xslate = Text::Xslate->new(
     function => {
         count => sub {
@@ -16,11 +15,12 @@ my $xslate = Text::Xslate->new(
     }
 );
 
+# Render a template - this one always works
 print $xslate->render('test.tx', {
     c => Controller->new
 });
 
-# Uncomment this bit and it works again
+# Uncomment this bit and the render call below works again
 #my $xslate = Text::Xslate->new(
 #    function => {
 #        count => sub {
@@ -29,7 +29,7 @@ print $xslate->render('test.tx', {
 #    }
 #);
 
-# This bit always fails
+# Render the template again - it always fails if we reuse the original xslate object
 print $xslate->render('test.tx', {
     c => Controller->new
 });
